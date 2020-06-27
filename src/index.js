@@ -1,10 +1,12 @@
+// @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import Loadable from 'react-loadable'
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-)
+window.onload = () => {
+    Loadable.preloadReady().then(() => {
+        const root = document.getElementById('root')
+        root && ReactDOM.hydrate(<App />, root)
+    })
+}

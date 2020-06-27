@@ -1,42 +1,48 @@
 {
-  "name": "hacker-news",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "lodash": "^4.17.15",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
-  },
-  "scripts": {
-    "start": "flow && react-scripts start",
-    "build": "flow && react-scripts build",
-    "test": "flow && react-scripts test",
-    "eject": "react-scripts eject",
-    "flow": "flow"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "flow-bin": "^0.126.1",
-    "flow-typed": "^2.6.1",
-    "jest-cli": "^20.0.4"
-  }
+    "name": "hacker-news",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.3.2",
+        "@testing-library/user-event": "^7.1.2",
+        "express": "^4.17.1",
+        "lodash": "^4.17.15",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-loadable": "^5.5.0",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "3.4.1"
+    },
+    "scripts": {
+        "start": "flow && react-scripts start",
+        "build": "flow && react-scripts build",
+        "test": "flow && react-scripts test",
+        "eject": "react-scripts eject",
+        "flow": "flow",
+        "serve": "react-scripts build && BABEL_ENV=production node server/bootstrap.js"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react-app": "^3.1.2",
+        "flow-bin": "^0.127.0",
+        "flow-typed": "^3.1.0",
+        "ignore-styles": "^5.0.1",
+        "jest-cli": "^20.0.4"
+    }
 }
