@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "12"
+cache: yarn
+script:
+  - echo 'Deploy!!'
+  - echo 'Installing Deps!'
+  - yarn
+  - echo 'Testing!'
+  - yarn test
