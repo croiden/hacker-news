@@ -1,9 +1,9 @@
 require('ignore-styles')
 
-require('babel-register')({
+require('@babel/register')({
     ignore: [/(node_modules)/],
-    presets: ['es2015', 'react-app'],
-    plugins: ['syntax-dynamic-import', 'dynamic-import-node', 'react-loadable/babel'],
+    presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-flow'],
+    plugins: ['@babel/plugin-syntax-dynamic-import', 'dynamic-import-node'],
 })
 
 require('./index')
