@@ -31,6 +31,9 @@ const Navigation = styled.div`
         color: #ff6600;
         font-weight: bold;
     }
+    > span {
+        opacity: 0.5;
+    }
 `
 
 const Empty = styled.div`
@@ -43,10 +46,11 @@ const Empty = styled.div`
 `
 
 type Props = {
-    page?: number,
-    items?: Array<Object>,
+    page: number,
+    items: Array<Object>,
+    totalPages: number,
 }
-export const List = ({ page = 0, items = [] }: Props) => {
+export const List = ({ page, items, totalPages }: Props) => {
     return (
         <Container>
             <Header />
@@ -58,13 +62,21 @@ export const List = ({ page = 0, items = [] }: Props) => {
                         })}
                     </ListItems>
                     <Navigation>
-                        <a href={`/?page=${page - 1}`}>
+                        {page > 0 ? (
+                            <a href={`/?page=${page - 1}`}>
+                                <span>Previous</span>
+                            </a>
+                        ) : (
                             <span>Previous</span>
-                        </a>
+                        )}
                         <span>|</span>
-                        <a href={`/?page=${page + 1}`}>
+                        {page < totalPages - 1 ? (
+                            <a href={`/?page=${page + 1}`}>
+                                <span>Next</span>
+                            </a>
+                        ) : (
                             <span>Next</span>
-                        </a>
+                        )}
                     </Navigation>
                 </>
             ) : (
@@ -74,9 +86,10 @@ export const List = ({ page = 0, items = [] }: Props) => {
     )
 }
 
-const mapStateToProps = ({ items, page }: Object): Object => ({
+const mapStateToProps = ({ items, page, totalPages }: Object): Object => ({
     items: Object.keys(items).map(id => items[id]),
-    page: page,
+    page,
+    totalPages,
 })
 // $FlowFixMe
 export default connect(mapStateToProps)(List)

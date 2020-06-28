@@ -1,5 +1,11 @@
 // @flow
-export default (state: Object = [], action: Object) => {
+import { type StoreType } from '../types'
+const initialState = {
+    page: 0,
+    totalPages: 0,
+    items: {},
+}
+export default (state: StoreType = initialState, action: Object) => {
     switch (action.type) {
         case 'INCREMENT_VOTE':
             return {

@@ -26,11 +26,12 @@ export default (req, res, next) => {
         const page = parseInt(req.query.page) || 0
         axios
             .get(`https://hn.algolia.com/api/v1/search?page=${page}`)
-            .then(result => {
+            .then(({ data }) => {
                 // Create a new Redux store instance
                 const store = createStore(NewsReducer, {
-                    items: _.keyBy(result.data.hits, 'objectID'),
-                    page: page,
+                    items: _.keyBy(data.hits, 'objectID'),
+                    page: data.page,
+                    totalPages: data.nbPages,
                 })
 
                 const sheet = new ServerStyleSheet()
