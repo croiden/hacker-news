@@ -1,9 +1,16 @@
 // @flow
 import React from 'react'
+import styled from 'styled-components'
 // $FlowFixMe
 import { Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
 
+import { type ThemeType } from '../types'
+
+const Container: ThemeType = styled.div`
+    border-bottom: 4px solid #f98335;
+    margin-bottom: 10px;
+`
 type Props = {
     objectIds: Array<string>,
     points: Array<number>,
@@ -36,9 +43,9 @@ export const Chart = ({ objectIds, points }: Props) => {
         ],
     }
     return (
-        <div>
+        <Container>
             <Line data={data} />
-        </div>
+        </Container>
     )
 }
 

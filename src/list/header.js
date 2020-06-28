@@ -7,7 +7,6 @@ import { type ThemeType } from '../types'
 const Header: ThemeType = styled.div`
     display: flex;
     min-height: 36px;
-    background: #dadada;
     align-items: center;
     padding: 0px 10px;
     background: #ff6600;

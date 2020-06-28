@@ -6,6 +6,12 @@ import styled from 'styled-components'
 import Header from './header'
 import Item from './item'
 
+import { type ThemeType } from '../types'
+
+const Container: ThemeType = styled.div`
+    border-bottom: 4px solid #f98335;
+    margin-bottom: 10px;
+`
 const ListItems = styled.ul`
     margin: 0;
     padding: 0;
@@ -14,13 +20,35 @@ const ListItems = styled.ul`
         background: #e0e0e0;
     }
 `
+const Navigation = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 36px;
+    padding: 10px;
+    span {
+        padding-right: 10px;
+        color: #ff6600;
+        font-weight: bold;
+    }
+`
+
+const Empty = styled.div`
+    display: flex;
+    justify-content: center;
+    height: 46px;
+    align-items: center;
+    font-style: italic;
+    color: grey;
+`
+
 type Props = {
     page?: number,
     items?: Array<Object>,
 }
 export const List = ({ page = 0, items = [] }: Props) => {
     return (
-        <>
+        <Container>
             <Header />
             {items.length ? (
                 <>
@@ -29,13 +57,20 @@ export const List = ({ page = 0, items = [] }: Props) => {
                             return <Item key={item.objectID} {...item} />
                         })}
                     </ListItems>
-                    <a href={`/?page=${page - 1}`}>Previous</a>
-                    <a href={`/?page=${page + 1}`}>Next</a>
+                    <Navigation>
+                        <a href={`/?page=${page - 1}`}>
+                            <span>Previous</span>
+                        </a>
+                        <span>|</span>
+                        <a href={`/?page=${page + 1}`}>
+                            <span>Next</span>
+                        </a>
+                    </Navigation>
                 </>
             ) : (
-                <div>{'No data found'}</div>
+                <Empty>{'No data found, you may have exceeded the page limit.'}</Empty>
             )}
-        </>
+        </Container>
     )
 }
 

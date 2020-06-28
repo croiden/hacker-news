@@ -1,12 +1,8 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import Loadable from 'react-loadable'
 import axios from 'axios'
 import _ from 'lodash'
 import { ServerStyleSheet } from 'styled-components'
-
-// read the manifest file
-import manifest from '../../build/asset-manifest.json'
 
 // import our main App component
 import App from '../../src/App'
@@ -17,11 +13,6 @@ import NewsReducer from '../../src/reducers'
 
 const path = require('path')
 const fs = require('fs')
-
-const extractAssets = (assets, chunks) =>
-    Object.keys(assets)
-        .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
-        .map(k => assets[k])
 
 export default (req, res, next) => {
     // point to the html file created by CRA's build tool
@@ -43,15 +34,12 @@ export default (req, res, next) => {
                 })
 
                 const sheet = new ServerStyleSheet()
-                const modules = []
                 // render the app as a string
                 const html = ReactDOMServer.renderToString(
                     sheet.collectStyles(
-                        <Loadable.Capture report={m => modules.push(m)}>
-                            <Provider store={store}>
-                                <App />
-                            </Provider>
-                        </Loadable.Capture>
+                        <Provider store={store}>
+                            <App />
+                        </Provider>
                     )
                 )
                 const styles = sheet.getStyleTags() // <-- getting all the tags from the sheet
@@ -64,14 +52,11 @@ export default (req, res, next) => {
                     preloadedState
                 ).replace(/</g, '\\u003c')}</script>`
 
-                const extraChunks = extractAssets(manifest.files, modules).map(
-                    c => `<script type="text/javascript" src="${c}"></script>`
-                )
                 // inject the rendered app into our html and send it
                 return res.send(
                     htmlData
                         .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-                        .replace('</body>', `${extraChunks.join('')} ${initialState} </body>`)
+                        .replace('</body>', `${initialState} </body>`)
                         .replace('</head>', `${styles} </head>`)
                 )
             })

@@ -1,7 +1,9 @@
 // @flow
-import React from 'react'
-import Loadable from 'react-loadable'
+import React, { lazy, useState, Suspense, useEffect } from 'react'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { connect } from 'react-redux'
+
+import List from './list'
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -24,25 +26,51 @@ const Container = styled.div`
     }
 `
 
-const AsyncListComponent = Loadable({
-    loader: () => import(/* webpackChunkName: "listChunk" */ './list'),
-    loading: () => <div>loading...</div>,
-    modules: ['listChunk'],
-})
-const AsyncChartComponent = Loadable({
-    loader: () => import(/* webpackChunkName: "chartChunk" */ './chart'),
-    loading: () => <div>loading...</div>,
-    modules: ['chartChunk'],
-})
+const ChartComponent = lazy(() => import(`./chart`))
 
-export default () => {
+type Props = {
+    hasItems: boolean,
+}
+export const App = ({ hasItems = false }: Props) => {
+    const [showChart, setShowChart] = useState(false)
+
+    useEffect(() => {
+        if (hasItems) {
+            const isScrollAtTheBottom = () => {
+                if (
+                    document.body &&
+                    window.innerHeight + window.scrollY >= document.body.offsetHeight
+                ) {
+                    // you're at the bottom of the page
+                    setShowChart(true)
+                }
+            }
+            isScrollAtTheBottom()
+
+            window.addEventListener('scroll', isScrollAtTheBottom)
+            return () => {
+                window.removeEventListener('scroll')
+            }
+        }
+    }, [hasItems])
+
     return (
         <ThemeProvider theme={{ fontFamily: 'Verdana, Geneva, sans-serif' }}>
             <GlobalStyle />
             <Container>
-                <AsyncListComponent />
-                <AsyncChartComponent />
+                <List />
+                {showChart && (
+                    <Suspense fallback={<div>Loading chart...</div>}>
+                        <ChartComponent />
+                    </Suspense>
+                )}
             </Container>
         </ThemeProvider>
     )
 }
+
+const mapStateToProps = ({ items }: Object): Object => ({
+    hasItems: Boolean(Object.keys(items).length),
+})
+// $FlowFixMe
+export default connect(mapStateToProps)(App)
