@@ -1,6 +1,6 @@
 // @flow
 import React, { lazy, useState, Suspense, useEffect } from 'react'
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { connect } from 'react-redux'
 
 import List from './list'
@@ -10,9 +10,11 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
     body {
-        background:#efefef;
-        font-family: ${props => props.theme.fontFamily};
         margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background:#efefef;
         font-size: 10pt;
     }
     a:link{
@@ -55,7 +57,7 @@ export const App = ({ hasItems = false }: Props) => {
     }, [hasItems])
 
     return (
-        <ThemeProvider theme={{ fontFamily: 'Verdana, Geneva, sans-serif' }}>
+        <>
             <GlobalStyle />
             <Container>
                 <List />
@@ -65,7 +67,7 @@ export const App = ({ hasItems = false }: Props) => {
                     </Suspense>
                 )}
             </Container>
-        </ThemeProvider>
+        </>
     )
 }
 
