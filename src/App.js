@@ -1,6 +1,28 @@
 // @flow
 import React from 'react'
 import Loadable from 'react-loadable'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+    *{
+        box-sizing: border-box;
+    }
+    body {
+        background:#efefef;
+        font-family: ${props => props.theme.fontFamily};
+        margin: 0;
+        font-size: 10pt;
+    }
+    a:link{
+      color:#000000;
+      text-decoration:none;
+    }
+`
+const Container = styled.div`
+    @media (min-width: 1024px) {
+        margin: 0 8%;
+    }
+`
 
 const AsyncListComponent = Loadable({
     loader: () => import(/* webpackChunkName: "listChunk" */ './list'),
@@ -15,10 +37,12 @@ const AsyncChartComponent = Loadable({
 
 export default () => {
     return (
-        <div>
-            <div>{'Hacker News'}</div>
-            <AsyncListComponent />
-            <AsyncChartComponent />
-        </div>
+        <ThemeProvider theme={{ fontFamily: 'Verdana, Geneva, sans-serif' }}>
+            <GlobalStyle />
+            <Container>
+                <AsyncListComponent />
+                <AsyncChartComponent />
+            </Container>
+        </ThemeProvider>
     )
 }

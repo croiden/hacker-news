@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import Loadable from 'react-loadable'
 import axios from 'axios'
 import _ from 'lodash'
+import { ServerStyleSheet } from 'styled-components'
 
 // read the manifest file
 import manifest from '../../build/asset-manifest.json'
@@ -41,15 +42,20 @@ export default (req, res, next) => {
                     page: page,
                 })
 
+                const sheet = new ServerStyleSheet()
                 const modules = []
                 // render the app as a string
                 const html = ReactDOMServer.renderToString(
-                    <Loadable.Capture report={m => modules.push(m)}>
-                        <Provider store={store}>
-                            <App />
-                        </Provider>
-                    </Loadable.Capture>
+                    sheet.collectStyles(
+                        <Loadable.Capture report={m => modules.push(m)}>
+                            <Provider store={store}>
+                                <App />
+                            </Provider>
+                        </Loadable.Capture>
+                    )
                 )
+                const styles = sheet.getStyleTags() // <-- getting all the tags from the sheet
+
                 // Grab the initial state from our Redux store
                 const preloadedState = store.getState()
                 // WARNING: See the following for security issues around embedding JSON in HTML:
@@ -66,6 +72,7 @@ export default (req, res, next) => {
                     htmlData
                         .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
                         .replace('</body>', `${extraChunks.join('')} ${initialState} </body>`)
+                        .replace('</head>', `${styles} </head>`)
                 )
             })
             .catch(err => {
