@@ -3,8 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { getDomain } from '../utils'
+import { type ThemeType } from '../types'
 
-const Row = styled.li`
+const Row: ThemeType = styled.li`
     display: flex;
     min-height: 36px;
     align-items: center;

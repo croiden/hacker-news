@@ -2,7 +2,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Header = styled.div`
+import { type ThemeType } from '../types'
+
+const Header: ThemeType = styled.div`
     display: flex;
     min-height: 36px;
     background: #dadada;
