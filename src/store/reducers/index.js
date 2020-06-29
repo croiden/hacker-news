@@ -1,14 +1,16 @@
 // @flow
 import { type StoreType } from '../../types'
 import { INCREMENT_VOTE, HIDE_ITEM } from '../actionTypes'
+import { updateVote, hideItem } from '../browser'
 const initialState = {
     page: 0,
     totalPages: 0,
     items: {},
 }
-export default (state: StoreType = initialState, action: Object) => {
+export default (state: StoreType = initialState, action: Object): StoreType => {
     switch (action.type) {
         case INCREMENT_VOTE:
+            updateVote(action.id, state.items[action.id].points + 1)
             return {
                 ...state,
                 items: {
@@ -20,6 +22,7 @@ export default (state: StoreType = initialState, action: Object) => {
                 },
             }
         case HIDE_ITEM:
+            hideItem(action.id)
             return {
                 ...state,
                 items: {

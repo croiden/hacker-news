@@ -5,6 +5,7 @@ import App from './App'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import NewsReducer from './store/reducers'
+import { getStorageData } from './store/browser'
 import * as serviceWorker from './serviceWorker'
 
 window.onload = () => {
@@ -13,6 +14,14 @@ window.onload = () => {
 
     // Allow the passed state to be garbage-collected
     delete window.__PRELOADED_STATE__
+
+    const storageData = getStorageData()
+    Object.keys(storageData).forEach((id: string) => {
+        preloadedState.items[id] = {
+            ...preloadedState.items[id],
+            ...storageData[id],
+        }
+    })
 
     // Create Redux store with initial state
     const store = createStore(NewsReducer, preloadedState)

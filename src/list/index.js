@@ -61,7 +61,7 @@ export const List = ({ page, items, totalPages, incrementVote, hideItem }: Props
                 <>
                     <ListItems>
                         {items.map((item: Object) => {
-                            return item.hidden ? null : (
+                            return (
                                 <Item
                                     key={item.objectID}
                                     {...item}
