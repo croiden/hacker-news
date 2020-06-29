@@ -18,7 +18,7 @@ const ListItems = styled.ul`
     padding: 0;
     background: #f6f6ef;
     li:nth-child(odd) {
-        background: #e0e0e0;
+        background: #efefef;
     }
 `
 const Navigation = styled.div`
@@ -29,7 +29,7 @@ const Navigation = styled.div`
     padding: 10px;
     span {
         padding-right: 10px;
-        color: #ff6600;
+        color: #b94a00;
         font-weight: bold;
     }
     > span {

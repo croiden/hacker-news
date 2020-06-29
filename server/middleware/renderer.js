@@ -33,9 +33,11 @@ export default (req, res, next) => {
                 try {
                     const storageData = JSON.parse(getCookieByKey(req.headers.cookie))
                     Object.keys(storageData).forEach((id: string) => {
-                        items[id] = {
-                            ...items[id],
-                            ...storageData[id],
+                        if (items[id]) {
+                            items[id] = {
+                                ...items[id],
+                                ...storageData[id],
+                            }
                         }
                     })
                 } catch {

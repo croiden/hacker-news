@@ -25,6 +25,16 @@ const Column = styled.div`
         text-overflow: ellipsis;
     }
 `
+const VoteColumn = styled(Column)`
+    color: ${props =>
+        props.points > 100
+            ? '#b94a00'
+            : props.points > 75
+            ? '#8e3800'
+            : props.points > 50
+            ? '#4e2910'
+            : 'init'};
+`
 const TextColumn = styled.div`
     padding-right: 10px;
     min-width: 90px;
@@ -95,8 +105,8 @@ export default function item({
     }
     return (
         <Row>
-            <Column>{num_comments || '0'}</Column>
-            <Column>{points || '0'}</Column>
+            <Column>{num_comments || 0}</Column>
+            <VoteColumn points={points || 0}>{points || 0}</VoteColumn>
             <Column>
                 <UpVoteButton onClick={handleUpVote}>^</UpVoteButton>
             </Column>
