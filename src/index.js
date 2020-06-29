@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import NewsReducer from './reducers'
+import NewsReducer from './store/reducers'
 import * as serviceWorker from './serviceWorker'
 
 window.onload = () => {

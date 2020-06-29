@@ -55,6 +55,15 @@ const Details = styled.div`
     display: flex;
     flex-wrap: wrap;
 `
+const HideButton = styled.button`
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 8pt;
+    padding: 0;
+    color: #505050;
+`
+const UpVoteButton = styled.button``
 
 type Props = {
     objectID: number,
@@ -64,14 +73,32 @@ type Props = {
     url: string,
     author: string,
     created_at: string,
+    onUpVote: (objectID: number) => void,
+    onHide: (objectID: number) => void,
 }
-export default function item({ title, num_comments, points, url, author, created_at }: Props) {
+export default function item({
+    objectID,
+    title,
+    num_comments,
+    points,
+    url,
+    author,
+    created_at,
+    onUpVote,
+    onHide,
+}: Props) {
+    const handleUpVote = () => {
+        onUpVote(objectID)
+    }
+    const handleHide = () => {
+        onHide(objectID)
+    }
     return (
         <Row>
             <Column>{num_comments || '0'}</Column>
             <Column>{points || '0'}</Column>
             <Column>
-                <button>^</button>
+                <UpVoteButton onClick={handleUpVote}>^</UpVoteButton>
             </Column>
             <TextColumn>
                 {title && (
@@ -99,7 +126,9 @@ export default function item({ title, num_comments, points, url, author, created
                 </Details>
                 <TextItem>
                     <Link>
-                        [ <a href={'!#'}>{'Hide'}</a> ]
+                        {'[ '}
+                        <HideButton onClick={handleHide}>{'Hide'}</HideButton>
+                        {' ]'}
                     </Link>
                 </TextItem>
             </TextColumn>

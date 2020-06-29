@@ -1,5 +1,6 @@
 // @flow
-import { type StoreType } from '../types'
+import { type StoreType } from '../../types'
+import { INCREMENT_VOTE, HIDE_ITEM } from '../actionTypes'
 const initialState = {
     page: 0,
     totalPages: 0,
@@ -7,7 +8,7 @@ const initialState = {
 }
 export default (state: StoreType = initialState, action: Object) => {
     switch (action.type) {
-        case 'INCREMENT_VOTE':
+        case INCREMENT_VOTE:
             return {
                 ...state,
                 items: {
@@ -18,7 +19,7 @@ export default (state: StoreType = initialState, action: Object) => {
                     },
                 },
             }
-        case 'HIDE_ITEM':
+        case HIDE_ITEM:
             return {
                 ...state,
                 items: {

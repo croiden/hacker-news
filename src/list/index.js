@@ -7,6 +7,7 @@ import Header from './header'
 import Item from './item'
 
 import { type ThemeType } from '../types'
+import { incrementVote, hideItem } from '../store/actions'
 
 const Container: ThemeType = styled.div`
     border-bottom: 4px solid #f98335;
@@ -49,8 +50,10 @@ type Props = {
     page: number,
     items: Array<Object>,
     totalPages: number,
+    incrementVote: (objectID: number) => void,
+    hideItem: (objectID: number) => void,
 }
-export const List = ({ page, items, totalPages }: Props) => {
+export const List = ({ page, items, totalPages, incrementVote, hideItem }: Props) => {
     return (
         <Container>
             <Header />
@@ -58,7 +61,14 @@ export const List = ({ page, items, totalPages }: Props) => {
                 <>
                     <ListItems>
                         {items.map((item: Object) => {
-                            return <Item key={item.objectID} {...item} />
+                            return item.hidden ? null : (
+                                <Item
+                                    key={item.objectID}
+                                    {...item}
+                                    onUpVote={incrementVote}
+                                    onHide={hideItem}
+                                />
+                            )
                         })}
                     </ListItems>
                     <Navigation>
@@ -91,5 +101,12 @@ const mapStateToProps = ({ items, page, totalPages }: Object): Object => ({
     page,
     totalPages,
 })
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        incrementVote: id => dispatch(incrementVote(id)),
+        hideItem: id => dispatch(hideItem(id)),
+    }
+}
 // $FlowFixMe
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(List)

@@ -9,7 +9,7 @@ import App from '../../src/App'
 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import NewsReducer from '../../src/reducers'
+import NewsReducer from '../../src/store/reducers'
 
 const path = require('path')
 const fs = require('fs')

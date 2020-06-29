@@ -10,6 +10,7 @@ import { type ThemeType } from '../types'
 const Container: ThemeType = styled.div`
     border-bottom: 4px solid #f98335;
     margin-bottom: 10px;
+    padding: 20px;
 `
 type Props = {
     objectIds: Array<string>,
@@ -23,17 +24,17 @@ export const Chart = ({ objectIds, points }: Props) => {
                 label: 'Vote counts',
                 fill: false,
                 lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(255, 102, 0,0.4)',
+                borderColor: 'rgba(255, 102, 0,1)',
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBorderColor: 'rgba(255, 102, 0,1)',
                 pointBackgroundColor: '#fff',
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBackgroundColor: 'rgba(255, 102, 0,1)',
                 pointHoverBorderColor: 'rgba(220,220,220,1)',
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
@@ -49,9 +50,13 @@ export const Chart = ({ objectIds, points }: Props) => {
     )
 }
 
-const mapStateToProps = ({ items, page }: Object): Object => ({
-    objectIds: Object.keys(items),
-    points: Object.keys(items).map(id => items[id].points),
-})
+const mapStateToProps = ({ items, page }: Object): Object => {
+    const validItems = Object.keys(items).filter(id => !items[id].hidden)
+    return {
+        objectIds: validItems,
+        points: validItems.map(id => items[id].points),
+    }
+}
+
 // $FlowFixMe
 export default connect(mapStateToProps)(Chart)
