@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { getDomain } from '../utils'
+import { getDomain, timeDifference } from '../utils'
 import { type ThemeType } from '../types'
 
 const Row: ThemeType = styled.li`
@@ -121,7 +121,7 @@ export default function item({
                         </TextItem>
                     )}
                     <TextItem>
-                        <label>{created_at}</label>
+                        <label>{timeDifference(new Date(created_at))}</label>
                     </TextItem>
                 </Details>
                 <TextItem>
