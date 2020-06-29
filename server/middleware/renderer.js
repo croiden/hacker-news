@@ -10,6 +10,7 @@ import App from '../../src/App'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import NewsReducer from '../../src/store/reducers'
+import { getCookieByKey } from '../../src/store/browser'
 
 const path = require('path')
 const fs = require('fs')
@@ -27,9 +28,23 @@ export default (req, res, next) => {
         axios
             .get(`https://hn.algolia.com/api/v1/search?page=${page}`)
             .then(({ data }) => {
+                //read from cookie
+                const items = _.keyBy(data.hits, 'objectID')
+                try {
+                    const storageData = JSON.parse(getCookieByKey(req.headers.cookie))
+                    Object.keys(storageData).forEach((id: string) => {
+                        items[id] = {
+                            ...items[id],
+                            ...storageData[id],
+                        }
+                    })
+                } catch {
+                    console.error('no cookie data')
+                }
+
                 // Create a new Redux store instance
                 const store = createStore(NewsReducer, {
-                    items: _.keyBy(data.hits, 'objectID'),
+                    items: items,
                     page: data.page,
                     totalPages: data.nbPages,
                 })

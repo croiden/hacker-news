@@ -1,40 +1,42 @@
 // @flow
 const HACKER_NEWS_STORE: 'HACKER_NEWS_STORE' = 'HACKER_NEWS_STORE'
-const isStorageSupported = (): boolean => typeof Storage !== 'undefined'
+
+export const getCookieByKey = (cookie: string) => {
+    const data = cookie.split('; ').find(row => row.startsWith(HACKER_NEWS_STORE))
+    return data ? data.split('=')[1] : ''
+}
 
 export const setStorageData = (updatedData: Object) => {
-    localStorage.setItem(HACKER_NEWS_STORE, JSON.stringify(updatedData))
+    document.cookie = `${HACKER_NEWS_STORE}=${JSON.stringify(updatedData)}`
 }
 export const getStorageData = (): Object => {
-    if (isStorageSupported()) {
-        return JSON.parse(localStorage.getItem(HACKER_NEWS_STORE) || '{}')
+    try {
+        return JSON.parse(getCookieByKey(document.cookie)) || {}
+    } catch {
+        return {}
     }
 }
 
 export const updateVote = (id: string, points: number) => {
-    if (isStorageSupported()) {
-        const data = getStorageData()
-        const updatedData = {
-            ...data,
-            [id]: {
-                ...data[id],
-                points,
-            },
-        }
-        setStorageData(updatedData)
+    const data = getStorageData()
+    const updatedData = {
+        ...data,
+        [id]: {
+            ...data[id],
+            points,
+        },
     }
+    setStorageData(updatedData)
 }
 
 export const hideItem = (id: string) => {
-    if (isStorageSupported()) {
-        const data = getStorageData()
-        const updatedData = {
-            ...data,
-            [id]: {
-                ...data[id],
-                hidden: true,
-            },
-        }
-        setStorageData(updatedData)
+    const data = getStorageData()
+    const updatedData = {
+        ...data,
+        [id]: {
+            ...data[id],
+            hidden: true,
+        },
     }
+    setStorageData(updatedData)
 }
