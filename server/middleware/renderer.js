@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import axios from 'axios'
-import _ from 'lodash'
 import { ServerStyleSheet } from 'styled-components'
 
 // import our main App component
@@ -28,9 +27,17 @@ export default (req, res, next) => {
         axios
             .get(`https://hn.algolia.com/api/v1/search?page=${page}`)
             .then(({ data }) => {
-                //read from cookie
-                const items = _.keyBy(data.hits, 'objectID')
+                const items = data.hits.reduce(
+                    (acc, item) => ({
+                        ...acc,
+                        [item.objectID]: {
+                            ...item,
+                        },
+                    }),
+                    {}
+                )
                 try {
+                    //read from cookie
                     const storageData = JSON.parse(getCookieByKey(req.headers.cookie))
                     Object.keys(storageData).forEach((id: string) => {
                         if (items[id]) {

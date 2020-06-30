@@ -90,6 +90,7 @@ const UpVoteButton = styled.button`
 type Props = {
     objectID: number,
     title: string,
+    story_text: string,
     num_comments: number,
     points: number,
     url: string,
@@ -101,6 +102,7 @@ type Props = {
 export default function item({
     objectID,
     title,
+    story_text,
     num_comments,
     points,
     url,
@@ -125,10 +127,12 @@ export default function item({
                 </UpVoteButton>
             </Column>
             <TextColumn>
-                {title && (
+                {title ? (
                     <PrimaryText>
                         <a href={url}>{title}</a>
                     </PrimaryText>
+                ) : (
+                    <PrimaryText>{story_text}</PrimaryText>
                 )}
                 <Details>
                     {url && (
