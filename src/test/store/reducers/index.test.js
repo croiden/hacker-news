@@ -14,7 +14,7 @@ describe('Testing news reducer', () => {
     })
 
     it('should increment the vote by 1', () => {
-        const action = { type: INCREMENT_VOTE, id: '123' }
+        const action = { type: INCREMENT_VOTE, payload: { id: '123', points: 234 } }
         const initialState = {
             page: 1,
             totalPages: 10,
@@ -45,7 +45,7 @@ describe('Testing news reducer', () => {
     })
 
     it('should hide the item', () => {
-        const action = { type: HIDE_ITEM, id: '456' }
+        const action = { type: HIDE_ITEM, payload: { id: '456' } }
         const initialState = {
             page: 1,
             totalPages: 10,

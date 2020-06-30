@@ -50,8 +50,8 @@ type Props = {
     page: number,
     items: Array<Object>,
     totalPages: number,
-    incrementVote: (objectID: number) => void,
-    hideItem: (objectID: number) => void,
+    incrementVote: (objectID: string, points: number) => void,
+    hideItem: (objectID: string) => void,
 }
 export const List = ({ page, items, totalPages, incrementVote, hideItem }: Props) => {
     return (
@@ -65,7 +65,9 @@ export const List = ({ page, items, totalPages, incrementVote, hideItem }: Props
                                 <Item
                                     key={item.objectID}
                                     {...item}
-                                    onUpVote={incrementVote}
+                                    onUpVote={id => {
+                                        incrementVote(id, item.points)
+                                    }}
                                     onHide={hideItem}
                                 />
                             )
@@ -104,8 +106,8 @@ const mapStateToProps = ({ items, page, totalPages }: Object): Object => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        incrementVote: id => dispatch(incrementVote(id)),
-        hideItem: id => dispatch(hideItem(id)),
+        incrementVote: (id: string, points: number) => dispatch(incrementVote(id, points)),
+        hideItem: (id: string) => dispatch(hideItem(id)),
     }
 }
 // $FlowFixMe

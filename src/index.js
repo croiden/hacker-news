@@ -2,8 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+// $FlowFixMe
+import thunkMiddleware from 'redux-thunk'
 import NewsReducer from './store/reducers'
 import * as serviceWorker from './serviceWorker'
 
@@ -15,7 +17,7 @@ window.onload = () => {
     delete window.__PRELOADED_STATE__
 
     // Create Redux store with initial state
-    const store = createStore(NewsReducer, preloadedState)
+    const store = createStore(NewsReducer, preloadedState, applyMiddleware(thunkMiddleware))
 
     const root = document.getElementById('root')
     root &&

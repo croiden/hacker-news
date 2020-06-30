@@ -6,8 +6,9 @@ import { ServerStyleSheet } from 'styled-components'
 // import our main App component
 import App from '../../src/App'
 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
 import NewsReducer from '../../src/store/reducers'
 import { getCookieByKey } from '../../src/store/browser'
 
@@ -52,11 +53,15 @@ export default (req, res, next) => {
                 }
 
                 // Create a new Redux store instance
-                const store = createStore(NewsReducer, {
-                    items: items,
-                    page: data.page,
-                    totalPages: data.nbPages,
-                })
+                const store = createStore(
+                    NewsReducer,
+                    {
+                        items: items,
+                        page: data.page,
+                        totalPages: data.nbPages,
+                    },
+                    applyMiddleware(thunkMiddleware)
+                )
 
                 const sheet = new ServerStyleSheet()
                 // render the app as a string
