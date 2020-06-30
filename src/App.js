@@ -8,6 +8,7 @@ import List from './list'
 const GlobalStyle = createGlobalStyle`
     *{
         box-sizing: border-box;
+        outline-color:#ff6600;
     }
     body {
         margin: 0;

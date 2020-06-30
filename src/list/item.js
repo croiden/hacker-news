@@ -78,12 +78,13 @@ const HideButton = styled.button`
     color: #505050;
 `
 const UpVoteButton = styled.button`
-    background: url('/icons/triangle.svg');
-    background-repeat: no-repeat;
-    height: 16px;
-    width: 16px;
     border: none;
     cursor: pointer;
+    background: transparent;
+    img {
+        height: 16px;
+        width: 16px;
+    }
 `
 
 type Props = {
@@ -119,7 +120,9 @@ export default function item({
             <Column>{num_comments || 0}</Column>
             <VoteColumn points={points || 0}>{points || 0}</VoteColumn>
             <Column>
-                <UpVoteButton aria-label={'up vote'} onClick={handleUpVote}></UpVoteButton>
+                <UpVoteButton aria-label={'up vote'} onClick={handleUpVote}>
+                    <img src={'/icons/triangle.svg'} alt={'up vote'} />
+                </UpVoteButton>
             </Column>
             <TextColumn>
                 {title && (
