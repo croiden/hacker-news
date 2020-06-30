@@ -13,16 +13,17 @@ const Row: ThemeType = styled.li`
 `
 const Column = styled.div`
     padding-right: 10px;
-    min-width: 90px;
+    width: 84px;
+    min-width: 84px;
     align-items: center;
     justify-content: center;
     display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     @media (max-width: 768px) {
         width: 60px;
-        max-width: 60px;
         min-width: 60px;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 `
 const VoteColumn = styled(Column)`
@@ -37,11 +38,14 @@ const VoteColumn = styled(Column)`
 `
 const TextColumn = styled.div`
     padding-right: 10px;
-    min-width: 90px;
+    min-width: 80px;
     display: flex;
     flex-wrap: wrap;
     @media (max-width: 768px) {
         flex-direction: column;
+    }
+    @media (max-width: 420px) {
+        line-height: 1.4;
     }
 `
 const PrimaryText = styled.div`
@@ -49,7 +53,7 @@ const PrimaryText = styled.div`
 `
 const TextItem = styled.div`
     padding-right: 4px;
-    font-size: 8pt;
+    font-size: 85%;
 `
 const Link = styled.span`
     color: #616161;
@@ -69,11 +73,18 @@ const HideButton = styled.button`
     cursor: pointer;
     border: none;
     background: transparent;
-    font-size: 8pt;
+    font-size: 85%;
     padding: 0;
     color: #505050;
 `
-const UpVoteButton = styled.button``
+const UpVoteButton = styled.button`
+    background: url('/icons/triangle.svg');
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    border: none;
+    cursor: pointer;
+`
 
 type Props = {
     objectID: number,
@@ -108,7 +119,7 @@ export default function item({
             <Column>{num_comments || 0}</Column>
             <VoteColumn points={points || 0}>{points || 0}</VoteColumn>
             <Column>
-                <UpVoteButton onClick={handleUpVote}>^</UpVoteButton>
+                <UpVoteButton aria-label={'up vote'} onClick={handleUpVote}></UpVoteButton>
             </Column>
             <TextColumn>
                 {title && (

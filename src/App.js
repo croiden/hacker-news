@@ -15,11 +15,16 @@ const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background:#efefef;
-        font-size: 10pt;
+        font-size:16px;
     }
     a:link{
       color:#000000;
       text-decoration:none;
+    }
+    @media (min-width:420px){
+        body{
+            font-size:12px;
+        }
     }
 `
 const Container = styled.div`

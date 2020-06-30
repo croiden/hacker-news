@@ -14,7 +14,7 @@ const router = express.Router()
 router.use('^/$', serverRenderer)
 
 // other static resources should just be served as they are
-router.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
+router.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '1y' }))
 
 // anything else should act as our index page
 // react-router will take care of everything

@@ -8,7 +8,7 @@ const Header: ThemeType = styled.div`
     display: flex;
     min-height: 36px;
     align-items: center;
-    padding: 0px 10px;
+    padding: 10px;
     background: #ff6600;
     position: sticky;
     top: 0;
@@ -17,13 +17,14 @@ const Header: ThemeType = styled.div`
 
 const Column = styled.div`
     padding-right: 10px;
-    min-width: 90px;
+    width: 84px;
+    min-width: 84px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
     @media (max-width: 768px) {
         width: 60px;
-        max-width: 60px;
         min-width: 60px;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 `
 const TextColumn = styled.div`
