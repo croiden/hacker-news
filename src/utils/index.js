@@ -29,3 +29,6 @@ export const timeDifference = (previous: Date) => {
         return `${Math.round(elapsed / msPerYear)} years ago`
     }
 }
+
+export const isScrollAtTheBottom = () =>
+    document.body && window.innerHeight + window.scrollY >= document.body.offsetHeight

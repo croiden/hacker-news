@@ -3,6 +3,8 @@ import React, { lazy, useState, Suspense, useEffect } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import { connect } from 'react-redux'
 
+import useOnResize from './hooks/useOnResize'
+import { isScrollAtTheBottom } from './utils'
 import List from './list'
 
 const GlobalStyle = createGlobalStyle`
@@ -42,25 +44,21 @@ type Props = {
 export const App = ({ hasItems = false }: Props) => {
     const [showChart, setShowChart] = useState(false)
 
+    const checkScrollPosition = () => {
+        isScrollAtTheBottom() && setShowChart(true)
+    }
     useEffect(() => {
         if (hasItems) {
-            const isScrollAtTheBottom = () => {
-                if (
-                    document.body &&
-                    window.innerHeight + window.scrollY >= document.body.offsetHeight
-                ) {
-                    // you're at the bottom of the page
-                    setShowChart(true)
-                }
-            }
-            isScrollAtTheBottom()
+            checkScrollPosition()
 
-            window.addEventListener('scroll', isScrollAtTheBottom)
+            window.addEventListener('scroll', checkScrollPosition)
             return () => {
                 window.removeEventListener('scroll')
             }
         }
     }, [hasItems])
+
+    useOnResize(checkScrollPosition)
 
     return (
         <>
