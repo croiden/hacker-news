@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Component snapshot List snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-fznKkj hQinwj"
+  >
+    <div
+      class="sc-AxjAm eqzWxp"
+    >
+      <div
+        class="sc-AxirZ dJGpOX"
+      >
+        Comments
+      </div>
+      <div
+        class="sc-AxirZ dJGpOX"
+      >
+        Vote Count
+      </div>
+      <div
+        class="sc-AxirZ dJGpOX"
+      >
+        Up Vote
+      </div>
+      <div
+        class="sc-AxiKw erQXfN"
+      >
+        News Details
+      </div>
+    </div>
+    <ul
+      class="sc-fznZeY gsputF"
+    >
+      <li
+        class="sc-AxhCb gWiikx"
+      >
+        <div
+          class="sc-AxhUy jwKvYl"
+        >
+          527
+        </div>
+        <div
+          class="sc-AxhUy sc-AxgMl XYEfC"
+          points="1747"
+        >
+          1747
+        </div>
+        <div
+          class="sc-AxhUy jwKvYl"
+        >
+          <button
+            aria-label="up vote"
+            class="sc-fznyAO YVLpZ"
+          >
+            <img
+              alt="up vote"
+              src="/icons/triangle.svg"
+            />
+          </button>
+        </div>
+        <div
+          class="sc-AxheI itseRr"
+        >
+          <div
+            class="sc-Axmtr kknCXN"
+          >
+            <a
+              href="https://www.inderapotheke.de/blog/farewell-google-maps"
+            >
+              Farewell, Google Maps
+            </a>
+          </div>
+          <div
+            class="sc-fzpans kCwpnr"
+          >
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <span
+                class="sc-fzozJi ckiuXd"
+              >
+                (
+                <a
+                  href="https://www.inderapotheke.de/blog/farewell-google-maps"
+                >
+                  www.inderapotheke.de
+                </a>
+                )
+              </span>
+            </div>
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <span
+                class="sc-fzoLsD grudMq"
+              >
+                by 
+              </span>
+              <label>
+                ScottWRobinson
+              </label>
+            </div>
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <label>
+                2 years ago
+              </label>
+            </div>
+          </div>
+          <div
+            class="sc-AxmLO dWWPlA"
+          >
+            <span
+              class="sc-fzozJi ckiuXd"
+            >
+              [ 
+              <button
+                class="sc-fzplWN kUCwuD"
+              >
+                Hide
+              </button>
+               ]
+            </span>
+          </div>
+        </div>
+      </li>
+      <li
+        class="sc-AxhCb gWiikx"
+      >
+        <div
+          class="sc-AxhUy jwKvYl"
+        >
+          1010
+        </div>
+        <div
+          class="sc-AxhUy sc-AxgMl XYEfC"
+          points="1738"
+        >
+          1738
+        </div>
+        <div
+          class="sc-AxhUy jwKvYl"
+        >
+          <button
+            aria-label="up vote"
+            class="sc-fznyAO YVLpZ"
+          >
+            <img
+              alt="up vote"
+              src="/icons/triangle.svg"
+            />
+          </button>
+        </div>
+        <div
+          class="sc-AxheI itseRr"
+        >
+          <div
+            class="sc-Axmtr kknCXN"
+          >
+            <a
+              href="https://www.theverge.com/2018/9/12/17849868/eu-internet-copyright-reform-article-11-13-approved"
+            >
+              EU approves internet copyright law, including ‘link tax’ and ‘upload filter’
+            </a>
+          </div>
+          <div
+            class="sc-fzpans kCwpnr"
+          >
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <span
+                class="sc-fzozJi ckiuXd"
+              >
+                (
+                <a
+                  href="https://www.theverge.com/2018/9/12/17849868/eu-internet-copyright-reform-article-11-13-approved"
+                >
+                  www.theverge.com
+                </a>
+                )
+              </span>
+            </div>
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <span
+                class="sc-fzoLsD grudMq"
+              >
+                by 
+              </span>
+              <label>
+                daninet
+              </label>
+            </div>
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <label>
+                2 years ago
+              </label>
+            </div>
+          </div>
+          <div
+            class="sc-AxmLO dWWPlA"
+          >
+            <span
+              class="sc-fzozJi ckiuXd"
+            >
+              [ 
+              <button
+                class="sc-fzplWN kUCwuD"
+              >
+                Hide
+              </button>
+               ]
+            </span>
+          </div>
+        </div>
+      </li>
+      <li
+        class="sc-AxhCb gWiikx"
+      >
+        <div
+          class="sc-AxhUy jwKvYl"
+        >
+          233
+        </div>
+        <div
+          class="sc-AxhUy sc-AxgMl XYEfC"
+          points="1743"
+        >
+          1743
+        </div>
+        <div
+          class="sc-AxhUy jwKvYl"
+        >
+          <button
+            aria-label="up vote"
+            class="sc-fznyAO YVLpZ"
+          >
+            <img
+              alt="up vote"
+              src="/icons/triangle.svg"
+            />
+          </button>
+        </div>
+        <div
+          class="sc-AxheI itseRr"
+        >
+          <div
+            class="sc-Axmtr kknCXN"
+          >
+            <a
+              href="https://www.universityofcalifornia.edu/press-room/uc-terminates-subscriptions-worlds-largest-scientific-publisher-push-open-access-publicly"
+            >
+              UC terminates subscriptions with Elsevier in push for open access
+            </a>
+          </div>
+          <div
+            class="sc-fzpans kCwpnr"
+          >
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <span
+                class="sc-fzozJi ckiuXd"
+              >
+                (
+                <a
+                  href="https://www.universityofcalifornia.edu/press-room/uc-terminates-subscriptions-worlds-largest-scientific-publisher-push-open-access-publicly"
+                >
+                  www.universityofcalifornia.edu
+                </a>
+                )
+              </span>
+            </div>
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <span
+                class="sc-fzoLsD grudMq"
+              >
+                by 
+              </span>
+              <label>
+                tingletech
+              </label>
+            </div>
+            <div
+              class="sc-AxmLO dWWPlA"
+            >
+              <label>
+                1 years ago
+              </label>
+            </div>
+          </div>
+          <div
+            class="sc-AxmLO dWWPlA"
+          >
+            <span
+              class="sc-fzozJi ckiuXd"
+            >
+              [ 
+              <button
+                class="sc-fzplWN kUCwuD"
+              >
+                Hide
+              </button>
+               ]
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div
+      class="sc-fzokOt dOjJEL"
+    >
+      <span>
+        Previous
+      </span>
+      <span>
+        |
+      </span>
+      <a
+        href="/?page=1"
+      >
+        <span>
+          Next
+        </span>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
